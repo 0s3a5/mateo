@@ -1,0 +1,147 @@
+main {
+  margin-top: 80px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 80%; 
+  max-width: 1200px; 
+  height: 400px;
+  margin: 100px auto; /* Aumenta el margen superior para moverlo más abajo */
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden; /* Oculta el desbordamiento horizontal */
+  scroll-snap-type: x mandatory; /* Habilita el ajuste de desplazamiento */
+  scroll-behavior: smooth; /* Suaviza el desplazamiento */
+  height: 100%; /* Asegura que el carrusel ocupe toda la altura del contenedor */
+}
+
+.carousel-image {
+  flex: 0 0 100%; /* Cada imagen ocupa el 100% del ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  max-height: 100%; /* Limita la altura máxima para mantener la proporción */
+  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+  border: none;
+  scroll-snap-align: center; /* Alinea las imágenes al centro al detenerse */
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 50%;
+  font-size: 2em; /* Ajusta el tamaño del texto */
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.indicator.active {
+  background-color: #333;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 300px; /* Ajusta la altura para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 200px; /* Ajusta aún más la altura para dispositivos muy pequeños */
+  }
+}
+/*cards de producto*/
+.contenedor_productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 200px; 
+  justify-content: center;
+}
+
+.producto_card {
+  background: linear-gradient(90deg, #40193D,#4D308C);
+  border-radius: 10px;
+  width: 100%; 
+  max-width: 400px;
+  height: 100%; 
+  max-height: 600px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  border: 2px solid #000000;
+}
+
+.producto_card:hover {
+  transform: scale(1.05);
+}
+
+.producto_imagen {
+  width: 100%; 
+  height: auto;
+  max-height: 400px; 
+}
+
+.marca {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #ffffff;
+}
+
+.nombre {
+  font-size: 1em;
+  color: #ffffff;
+}
+
+.stock {
+  font-size: 1em;
+  color: #ffffff;
+}
+
+.precio {
+  font-size: 1.4em;
+  color: #1ABC9C;
+  margin: 10px 0 20px;
+}
+
+.card-link {
+  text-decoration: none;
+}

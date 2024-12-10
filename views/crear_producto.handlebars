@@ -1,0 +1,30 @@
+{{!-- crear_producto.handlebars --}}
+<div class="container mt-5">
+  <h1 class="mb-4">Crear Nuevo Producto</h1>
+
+  {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+  {{/if}}
+
+  <form action="/crear_producto" method="POST" class="mt-5"> <!-- Añadir clase mt-5 para margen superior -->
+    <div class="mb-3">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del producto" required style="font-weight: bold;"> <!-- Placeholder para el nombre -->
+    </div>
+
+    <div class="mb-3">
+      <input type="text" class="form-control" id="image" name="image" placeholder="URL de la imagen" required style="font-weight: bold;"> <!-- Placeholder para la URL -->
+    </div>
+
+    <div class="mb-3">
+      <textarea class="form-control" id="description" name="description" placeholder="Descripción del producto" required style="font-weight: bold;"></textarea> <!-- Placeholder para la descripción -->
+    </div>
+
+    <div class="mb-3">
+      <input type="number" class="form-control" id="price" name="price" placeholder="Precio del producto" step="0.01" required style="font-weight: bold;"> <!-- Placeholder para el precio -->
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Crear Producto</button>
+  </form>
+</div>

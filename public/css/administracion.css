@@ -1,0 +1,83 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #f7f7f7, #e3e3e3);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilos del contenedor de inicio de sesión */
+.login-container {
+  display: flex; /* Usar flexbox para alinear horizontalmente */
+  align-items: center; /* Alinear verticalmente al centro */
+  justify-content: center; /* Centrar horizontalmente */
+  padding: 20px;
+  height: calc(100vh - 80px); /* Ajustar la altura si es necesario */
+}
+
+.login-title {
+  color: white; /* Cambia el color del texto a blanco */
+  font-size: 32px; /* Ajusta el tamaño de la fuente */
+  font-weight: bold;
+  margin-right: 20px; /* Espacio a la derecha del título */
+}
+
+/* Eliminar el fondo del contenedor del formulario */
+#loginForm {
+  width: 100%; 
+  max-width: 400px; /* Ajusta este valor si es necesario */
+  text-align: center; /* Centra el contenido del formulario */
+}
+
+/* Estilos para los inputs y el botón */
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px; 
+}
+
+#loginForm button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#loginForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos del mensaje de error */
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 767px) {
+  .login-container {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    align-items: flex-start; /* Alinear elementos al inicio */
+    margin-top: 40px; /* Ajustar el margen superior para pantallas más pequeñas */
+  }
+
+}
+
+#loginForm {
+  width: 100%; 
+  max-width: 400px; /* Ajusta este valor si es necesario */
+  text-align: center; /* Centra el contenido del formulario */
+  margin-top: 40px; /* Añadir margen superior para mover el formulario hacia abajo */
+}

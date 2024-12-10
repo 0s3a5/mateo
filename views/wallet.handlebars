@@ -1,0 +1,91 @@
+<style>
+    /* Estilos existentes */
+    .saldo-container {
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%;
+    }
+
+    .saldo-text {
+        font-size: 2.5em;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .recargar-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .recargar-btn:hover {
+        background-color: #45a049;
+    }
+
+    /* Estilos para el formulario */
+    .recargar-form {
+        display: none; /* Oculto inicialmente */
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .recargar-form input {
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .recargar-form button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .recargar-form button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<main>
+    <header class="welcome">
+        <h1>Bienvenido, {{user.name}}</h1>
+    </header>
+
+    <div class="saldo-container">
+        <p class="saldo-text"> ${{wallet}}</p>
+    </div>
+
+    <button class="recargar-btn" onclick="mostrarFormulario()">Recargar</button>
+
+    <!-- Formulario para ingresar el monto -->
+    <form action="/recargar" method="POST" class="recargar-form" id="recargarForm">
+        <input type="number" name="monto" placeholder="Ingrese monto" required>
+        <button type="submit">Agregar saldo</button>
+    </form>
+</main>
+
+<script>
+    function mostrarFormulario() {
+        document.getElementById('recargarForm').style.display = 'block';
+    }
+</script>

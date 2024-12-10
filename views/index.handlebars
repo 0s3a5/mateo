@@ -1,0 +1,147 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/store-logo-design-template-3ac57f780d1cae2a6d3a049f82c62437_screen.jpg?ts=1646205211" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      Tienda en Línea
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {{#if user}} <!-- Verificamos si hay un usuario autenticado -->
+          <li class="nav-item">
+            <span class="nav-link">Bienvenido, {{user.name}}</span> <!-- Muestra el nombre del usuario -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Salir</a> <!-- Opción de cerrar sesión -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/carrito">Carrito</a>
+          </li>
+        {{else}} <!-- Si no hay usuario autenticado -->
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+        {{/if}}
+        {{#if user}} <!-- Mostrar estas opciones solo si el usuario está autenticado -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Más Opciones
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/wallet">Wallet</a></li>
+              <li><a class="dropdown-item" href="/historial">Historial de Compras</a></li>
+            </ul>
+          </li>
+        {{else}} <!-- Mostrar Administración solo si el usuario no ha iniciado sesión -->
+          <li class="nav-item">
+            <a class="nav-link" href="/administracion">Administración</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Contenido del carousel y productos permanece igual -->
+<div class="carousel-container">
+  <div class="carousel">
+    <img class="carousel-image" src="https://img.freepik.com/vector-gratis/banners-rebajas-moda-foto_52683-21232.jpg" alt="Imagen 1">
+    <img class="carousel-image" src="https://img.freepik.com/vector-gratis/banners-rebajas-ropa-foto_23-2148219780.jpg">
+    <img class="carousel-image" src="https://img.freepik.com/vector-gratis/plantilla-pagina-destino-venta-moda_23-2148581015.jpg">
+    <img class="carousel-image" src="https://img.freepik.com/vector-gratis/set-banners-compras-moda_23-2148182164.jpg?semt=ais_hybrid">
+  </div>
+  <button class="carousel-button prev">&#10094;</button>
+  <button class="carousel-button next">&#10095;</button>
+  <div class="carousel-indicators">
+    <span class="indicator active"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+  </div>
+</div>
+
+<!-------contenido ---->
+<div class="container-fluid">
+  <div class="row">
+    {{#if productos.length}}
+      {{#each productos}}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex">
+          <div class="producto_card card h-100 w-100">
+            <a href="/descripcion/{{this.id}}" class="card-link">
+              <div class="image-container position-relative">
+                <img src="{{this.imagen}}" alt="{{this.nombre}}" class="producto_imagen card-img-top img-fluid">
+                
+                <!-- Mensaje de éxito que aparecerá encima de la imagen -->
+                <div class="notification" style="display:none; position:absolute; top:10px; left:10px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 5px;">
+                  Agregado con éxito al carrito
+                </div>
+                
+                <div class="notification" style="display:none;" id="auth-message-{{this.id}}">
+                  <span class="badge bg-warning text-dark">Inicia sesión para comprar.</span>
+                </div>
+              </div>
+            </a>
+            <div class="card-body d-flex flex-column">
+              <h3 class="marca card-title">{{this.nombre}}</h3>
+             
+              <p class="precio mt-auto">${{this.precio}} CLP</p>
+              <!-- Botón de Agregar a Carrito -->
+              <button class="btn btn-outline-primary agregar-carrito" data-product-id="{{this.id}}" data-product-price="{{this.precio}}">Agregar a carrito</button>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>No hay productos disponibles.</p>
+    {{/if}}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.agregar-carrito').forEach(button => {
+    button.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevenir el comportamiento por defecto del botón
+
+      const productId = this.getAttribute('data-product-id');
+      const productPrice = this.getAttribute('data-product-price');
+
+      // Comprobar si el usuario está autenticado
+      const userAuthenticated = {{#if user}}true{{else}}false{{/if}};
+      const userId = {{#if user}} {{user.id}} {{else}} null {{/if}};
+
+      if (userAuthenticated) {
+        // Si está autenticado, realizar la solicitud AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/carrito', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            // Mostrar mensaje de éxito
+            alert(response.message); // Muestra el mensaje que llega del servidor
+
+            // Aquí puedes manejar el id_compra si lo necesitas
+            const id_compra = response.id_compra; // Obtén el id_compra de la respuesta
+            console.log('ID de compra:', id_compra); // Puedes hacer algo con el id_compra
+          } else {
+            alert('Hubo un error al agregar el producto al carrito: ' + xhr.responseText);
+          }
+        };
+
+        // Enviar los datos (user_id, producto_id y precio)
+        xhr.send(`user_id=${userId}&producto_id=${productId}&precio=${productPrice}`);
+      } else {
+        // Mostrar el mensaje de advertencia si no está autenticado
+        const messageElement = document.getElementById(`auth-message-${productId}`);
+        messageElement.style.display = 'block'; // Asegúrate de mostrar el mensaje
+        setTimeout(() => {
+          messageElement.style.display = 'none';
+        }, 5000); // Mostrar mensaje durante 5 segundos
+      }
+    });
+  });
+</script>

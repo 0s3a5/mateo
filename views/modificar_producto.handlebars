@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Modificar Producto</h1>
+
+  <!-- Formulario para modificar el producto -->
+  <form id="modificar-form" action="/modificar_producto" method="POST">
+    <input type="hidden" name="id" value="{{producto.id}}"> <!-- ID oculto del producto -->
+
+    <div class="form-group mb-4"> <!-- Espaciado inferior -->
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" name="nombre" id="nombre" value="{{producto.nombre}}" required>
+    </div>
+
+    <div class="form-group mb-4"> <!-- Espaciado inferior -->
+      <label for="precio" class="form-label">Precio:</label>
+      <input type="number" class="form-control" name="precio" id="precio" value="{{producto.precio}}" required>
+    </div>
+
+    <div class="form-group mb-4"> <!-- Espaciado inferior -->
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <textarea class="form-control" name="descripcion" id="descripcion" required>{{producto.descripcion}}</textarea>
+    </div>
+
+    <div class="form-group mb-4"> <!-- Espaciado inferior -->
+      <label for="imagen" class="form-label">URL de la Imagen:</label>
+      <input type="text" class="form-control" name="imagen" id="imagen" value="{{producto.imagen}}" required>
+    </div>
+
+    <div class="mt-4"> <!-- Espaciado superior -->
+      <button type="submit" class="btn btn-success">Listo</button>
+      <a href="/modificar" class="btn btn-secondary">Cancelar</a> <!-- Enlace para cancelar -->
+    </div>
+  </form>
+</div>
+
+<style>
+  .form-group {
+    margin-bottom: 30px; /* Ajusta el espaciado entre los campos del formulario */
+  }
+
+  #modificar-form {
+    margin-top: 50px; /* Ajusta el margen superior del formulario */
+  }
+
+  .form-label {
+    color: white; /* Cambia el color de las etiquetas a blanco */
+    font-weight: bold; /* Hace que las etiquetas sean más gruesas */
+  }
+</style>
+

@@ -1,0 +1,22 @@
+.contenido-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px; /* Espacio desde la parte superior */
+  padding: 20px; /* Espacio interno */
+}
+
+.contenido-admin h1 {
+  font-size: 4rem; /* Tamaño de letra más grande */
+  color: black;    /* Color negro */
+  font-weight: bold; /* Hacer el texto más grueso */
+  margin-bottom: 10px; /* Espacio inferior para separar del párrafo */
+}
+
+.contenido-admin p {
+  font-size: 1.5rem; /* Tamaño de letra para el párrafo */
+  color: black;      /* Color negro */
+  font-weight: bold; /* Hacer el texto más grueso */
+}

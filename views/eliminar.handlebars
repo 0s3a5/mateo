@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Producto</h1>
+
+  <!-- Tabla de productos -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Producto ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each productos}}
+      <tr>
+        <td>{{this.producto_id}}</td>
+        <td>{{this.name}}</td>
+        <td>${{this.precio}}</td>
+        <td>
+          <img src="{{this.imagen}}" alt="{{this.name}}" style="width: 50px; height: 50px; border-radius: 5%;" />
+        </td>
+        <td>
+          <form action="/eliminar_producto" method="POST" style="display:inline;">
+            <input type="hidden" name="id" value="{{this.producto_id}}"> <!-- ID del producto a eliminar -->
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+

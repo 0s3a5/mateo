@@ -1,0 +1,77 @@
+<div class="contenido-admin">
+  {{#if admin}}
+    <h1>Bienvenido administrador</h1>
+    <h1>{{username}}</h1>
+  {{else}}
+    <div>Acceso denegado.</div>
+  {{/if}}
+</div>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Administración General</h1>
+
+  <!-- Monto total de las ventas -->
+  <div class="alert alert-info" role="alert">
+    <strong>Monto total de ventas:</strong> ${{totalSales}}
+  </div>
+
+  <!-- Botones para crear, eliminar y modificar productos -->
+  <div class="mb-3">
+    <a href="/crear_producto" class="btn btn-primary">Crear Nuevo Producto</a>
+    <a href="/eliminar" class="btn btn-danger">Eliminar Producto</a>
+    <a href="/modificar" class="btn btn-warning">Modificar Producto</a>
+  </div>
+
+  <!-- Tabla de ventas -->
+  <h2>Ventas</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Producto ID</th>
+        <th>Nombre del Usuario</th>
+        <th>Nombre del Producto</th>
+        <th>Imagen del Producto</th>
+        <th>Precio</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sales}}
+      <tr>
+        <td>{{this.user_id}}</td>
+        <td>{{this.producto_id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.nombre_producto}}</td>
+        <td>
+          <img src="{{this.imagen_producto}}" alt="{{this.nombre_producto}}" style="width: 50px; height: 50px; border-radius: 50%;" />
+        </td>
+        <td>${{this.precio}}</td> <!-- Aquí se muestra el precio del producto -->
+        <td>${{this.total}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  function borrarProducto(productId) {
+    if (confirm('¿Estás seguro de que deseas borrar este producto?')) {
+      fetch(`/borrar_producto/${productId}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Producto borrado con éxito');
+          location.reload(); // Recargar la página para ver los cambios
+        } else {
+          alert('Error al borrar el producto');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un problema con la solicitud de borrado.');
+      });
+    }
+  }
+</script>

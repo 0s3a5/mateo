@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Historial de Compras</h1>
+
+  <!-- Tabla de historial de compras -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID de Venta</th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Fecha de Compra</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#if ventas.length}}
+        {{#each ventas}}
+        <tr>
+          <td>{{this.id_venta}}</td>
+          <td>{{this.producto}}</td>
+          <td>${{this.precio}}</td>
+          <td>{{this.fecha_compra}}</td>
+        </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="4">No hay compras registradas.</td>
+        </tr>
+      {{/if}}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,22 @@
+{{!-- administracion.handlebars --}}
+<div class="login-container" id="loginContainer">
+    <h1 class="login-title">Iniciar Sesión en Administración</h1>
+    <form id="loginForm" method="POST" action="/admin/login">
+        <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Administrador"
+            required
+        />
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            required
+        />
+        <button type="submit">Ingresar</button>
+        <div id="error-message" class="error-message">{{#if error}}{{error}}{{/if}}</div>
+    </form>
+</div>

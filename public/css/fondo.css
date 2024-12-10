@@ -1,0 +1,18 @@
+body {
+  background-image: url(https://elinfografico.mx/wp-content/uploads/2020/10/galaxia-andromeda-mexico-queretaro-el-infografico.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  animation: moveBackground 60s linear infinite;
+}
+
+
+@keyframes moveBackground {
+  0% {
+      background-position: 0% 0%;
+  }
+  100% {
+      background-position: 100% 100%;
+  }
+}
